@@ -1,0 +1,20 @@
+.button {
+  @include flex-center(true);
+
+  height: var(--input-height);
+  padding: 10px 20px;  
+  font-size: 20px;
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: var(--border-radius-large);
+
+  @include hover { 
+    color: var(--color-light);
+    background-color: var(--color-accent-dark);    
+  }
+
+  &--transparent {
+    color: var(--color-dark);
+    background-color: transparent;
+  }
+}

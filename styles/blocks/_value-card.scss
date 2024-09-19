@@ -1,0 +1,51 @@
+.value-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 30px;
+  min-height: 300px;
+  padding: 50px;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow);
+
+  @include tablet {
+    padding: 30px;
+  }
+
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: start;
+    justify-content: center;
+
+    @include tablet {
+      row-gap: 20px;
+    }
+
+  }
+
+  &__title {
+    font-size: 22px;
+  }
+
+  &__image {
+   @include tablet {
+    position: absolute;
+    top: -30px;
+    right: -30px;   
+    width: 130px;
+    height: 130px;
+   }
+
+   @include mobile {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+   }
+  }
+}

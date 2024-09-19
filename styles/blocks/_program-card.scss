@@ -1,0 +1,109 @@
+.program-card {
+  display: flex;
+  position: relative; 
+   
+  max-height: 450px;
+  border-radius: var(--border-radius-large);
+  background: linear-gradient(0.299turn,rgba(79,76,150,1) 21%,rgba(100,95,169,1) 72%,rgba(84,80,141,1) 100%);
+  color: var(--color-light);
+
+  @include mobile {
+    max-height: 100%;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-width: 700px;
+    padding: 60px;
+
+    @include tablet {
+      padding: 40px;
+    }    
+    @include mobile {
+      padding: 30px;
+      row-gap: 15px;
+    }
+  }
+
+  &__title {
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--color-accent);
+    
+    @include tablet {
+      font-size: 32px;
+    }
+
+    @include mobile {
+      font-size: 26px;
+    }
+  }
+
+  &__description {
+    font-size: 18px;
+    line-height: 22px;  
+
+    @include tablet {
+      font-size: 14px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    font-size: 16px;
+    line-height: 22px;  
+    max-width: 400px;
+
+    @include mobile {
+      max-width: 100%;
+     }
+  }
+
+  &__item {
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      top: 10px;
+      left: 0;
+      font-size: 20px;
+      color: var(--color-accent);
+      transform: translateY(-50%);
+    }
+
+    @include mobile {
+      font-size: 14px;
+    }
+  }
+
+  &__button { 
+    display: inline-flex;
+    align-self: flex-start;
+    width: 250px;
+
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    object-fit: cover; 
+
+    @include tablet {
+      max-width: 40%;
+    }
+
+    @include mobile {
+     display: none;
+    }
+  }
+}

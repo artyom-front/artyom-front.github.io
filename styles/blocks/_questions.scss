@@ -1,0 +1,95 @@
+.questions {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+
+  &__accordion {
+    --indicatorVerticalRotate: 135deg;
+    --indicatorHorizontalRotate: 45deg;
+
+    padding: 40px 60px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition-duration: var(--transition-duration);
+
+    @include tablet {
+      padding: 20px 40px;
+    }
+
+    @include hover {
+      background-color: var(--color-accent);      
+    }
+
+    &[open] {
+      --indicatorVerticalRotate: 90deg;
+      --indicatorHorizontalRotate: 0deg;
+
+      background-color: var(--color-accent);
+    }
+
+    &-header {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 50px;
+      cursor: pointer;
+      user-select: none;      
+    }
+
+    &-indicator {
+      --squareSize: 50px;
+
+      @include flex-center;
+      @include square(var(--squareSize));
+
+      position: relative;
+      border: var(--border);
+      border-radius: 50%;
+
+      @include mobile {
+        --squareSize: 30px;
+
+        position: absolute;
+        right: -30px;
+       
+     }
+
+      &::before,
+      &::after {
+        @include abs-center;
+
+        content: "";
+        width: 45%;
+        height: 8%;
+        background-color: var(--color-dark);      
+      }
+
+      &::before {
+        rotate: var(--indicatorVerticalRotate);
+        transition-duration: var(--transition-duration);
+
+      }
+
+      &::after {
+        rotate: var(--indicatorHorizontalRotate);
+        transition-duration: var(--transition-duration);
+      }      
+    }
+   @include mobile {
+      &-title {
+        font-size: 16px;
+        max-width: 90%;
+      }
+   }
+ 
+
+    &-body {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--color-dark);
+    }
+  }
+}

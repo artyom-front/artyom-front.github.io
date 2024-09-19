@@ -1,0 +1,221 @@
+$quantity: 6; 
+$animation-duration: 10s;
+
+.hero {
+  --width: 250px; 
+  --height: 75px; 
+   
+  display: flex;
+  padding-top: 60px;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  justify-content: center;
+
+  @include mobile {
+    margin-top: 80px;
+    
+  }
+
+  &__main {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;  
+
+    @include mobile {
+      flex-direction: column;
+      column-gap: 20px;  
+    }
+  }
+
+  &__body {
+    display: flex;      
+    width: 600px;
+    flex-direction: column;    
+    row-gap: 36px; 
+
+    @include mobile {
+      row-gap: 25px; 
+      width: 100%;
+    }
+  }
+
+  &__image {   
+    display: flex;
+    // max-width: 80%;
+    margin-inline: auto;
+
+    @include desktop {
+      max-width: 30%;
+    }
+
+    @include tablet {
+      max-width: 30%;
+      height: auto;
+    }   
+
+    @include mobile {
+     display: none;
+    }   
+  }
+
+
+  &__text-animate {
+    display: flex;
+    flex-direction: column;   
+    row-gap: 10px;
+
+    @include mobile {
+      align-items: center;  
+    }
+  }  
+
+  &__title {
+     font-size: 60px;
+     font-weight: 500;
+
+     @include mobile {
+      font-size: 42px;
+      text-align: center;
+    }
+  }
+
+  &__description {
+    font-size: 20px;
+    line-height: 1.4;
+
+    @include mobile {
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+
+  &__quality-list { 
+    height: 90px;  
+    line-height: 90px; 
+    overflow: hidden;
+    text-align: center;
+  }
+
+  &__quality-item {
+    position: relative;
+    top: 0;
+    font-size: 60px;
+    font-weight: 500;
+    padding: 0 30px 0 0; 
+    animation: slide 12s steps(4) infinite, colorful 3s infinite;
+
+
+
+    span {
+      position: relative;
+      color: var(--color-accent);
+ 
+      &::before{
+        content: "";
+
+        position: absolute;
+        left: 0;
+        width: 400px;   
+        height: 90px;   
+        background: var(--color-gray);
+        border-left: 2px solid var(--color-accent);
+        animation: typing 1.5s steps(10) infinite alternate;       
+      }     
+    }   
+
+    @include mobile {
+      font-size: 42px;
+    }
+  }
+
+
+  @keyframes slide {
+    100% {
+      top: -360px;
+    }
+  }
+  
+  @keyframes colorful {
+    100% {
+      filter: hue-rotate(360deg);
+    }    
+  }
+
+  @keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -35px 0 35px;
+    }
+  }
+
+  
+  &__offer {     
+    position: absolute; 
+    bottom: 0;
+    background-color: var(--color-accent);
+    width: 100%;
+    height: var(--height);
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 10% 90%,
+      transparent
+    );
+
+    &-list {
+      display: flex;
+      width: calc(var(--width) * $quantity); // Удваиваем ширину для бесшовной анимации
+      position: absolute;
+      top: 0;
+      left: 0;
+      column-gap: 10px;
+      animation: autoRun $animation-duration linear infinite; 
+ 
+       // Центрирование по горизонтали и вертикали
+       align-items: center; 
+       justify-content: center; 
+
+      @include hover {
+        animation-play-state: paused;
+      }
+    }
+
+    &-item {
+      width: var(--width);
+      height: var(--height);
+
+      font-size: 16px;
+      display: flex;      
+      flex-shrink: 0; 
+      position: relative; 
+      justify-content: center; // Центрирование по горизонтали
+      align-items: center; // Центрирование по вертикали
+      // Генерация стилей для элементов на основе их позиции
+      @for $i from 1 through $quantity {
+        &:nth-child(#{$i}) {
+          // Вычисление задержки анимации для элемента
+          animation-delay: calc(#{$animation-duration} / #{$quantity} * (#{($i - 1)}) - #{$animation-duration})!important;
+        }
+      }
+    }
+
+    &-free {
+      font-weight: 500;
+      color: #df2f55
+    }
+  }
+
+  @keyframes autoRun {
+    from {
+      transform: translateX(0); // Начальная позиция
+    }
+    to {
+      transform: translateX(calc(-100% / $quantity)); // Конечная позиция
+    }
+  }
+}
+
+
+

@@ -1,0 +1,27 @@
+.section {
+  padding-block: var(--section-padding-y);
+  padding-top: 80px;
+  margin-top: -80px; 
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    column-gap: 40px;
+
+    &:not(:last-child) {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__description { 
+    text-align: center;
+    font-size: 22px;
+  }
+
+
+}
+
+ 
